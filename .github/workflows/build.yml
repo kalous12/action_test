@@ -49,17 +49,6 @@ jobs:
         aarch64-linux-gnu-gcc -o hello action_test/hello.c
         echo "FIRMWARE=output" >> $GITHUB_ENV
       
-    - name: Create Release
-      id: create_release
-      uses: actions/create-release@v1
-      env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      with:
-        tag_name: ${{ github.ref }}
-        release_name: Release ${{ github.ref }}
-        draft: false
-        prerelease: false
-
     - name: Generate release tag
       id: tag
       if: env.UPLOAD_RELEASE == 'true' && !cancelled()
