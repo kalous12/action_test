@@ -48,12 +48,11 @@ jobs:
         mkdir output
         aarch64-linux-gnu-gcc -o output/hello action_test/hello.c
         echo "FIRMWARE=output" >> $GITHUB_ENV
-        echo "TAG=$(cat VERSION)" >> $GITHUB_ENV
       
     - name: Generate release
       id: tag
       run: |
-          echo "release_tag=${{ env.TAG }}" >> $GITHUB_OUTPUT
+          echo "release_tag=$(cat VERSION)" >> $GITHUB_OUTPUT
           echo "release_date=$(date +"%Y.%m.%d")" >> $GITHUB_OUTPUT
           touch release.txt
           echo "后台地址：192.168.11.1
