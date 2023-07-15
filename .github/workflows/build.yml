@@ -2,8 +2,8 @@ name: build
 run-name: build on github
 on:
   push:
-    paths:
-      - 'VERSION'
+    tags:
+      - 'v*'
 
 
 env:
@@ -55,8 +55,8 @@ jobs:
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       with:
-        tag_name: $(cat VERSION)
-        release_name: $(cat VERSION)
+        tag_name: ${{ github.ref }}
+        release_name: Release ${{ github.ref }}
         draft: false
         prerelease: false
 
@@ -64,7 +64,7 @@ jobs:
       id: tag
       if: env.UPLOAD_RELEASE == 'true' && !cancelled()
       run: |
-          echo "release_tag=$(cat VERSION)" >> $GITHUB_OUTPUT
+          echo "release_tag=${{ github.ref }}" >> $GITHUB_OUTPUT
           echo "release_date=$(date +"%Y.%m.%d")" >> $GITHUB_OUTPUT
           touch release.txt
           echo "后台地址：192.168.11.1
