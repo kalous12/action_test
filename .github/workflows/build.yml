@@ -41,7 +41,6 @@ jobs:
     - name: install dependency
       run: |
         sudo apt update
-        sudo apt upgrade
         sudo apt-get install -y gcc-aarch64-linux-gnu
 
     - name: complie
@@ -50,6 +49,19 @@ jobs:
         aarch64-linux-gnu-gcc -o hello action_test/hello.c
         echo "FIRMWARE=output" >> $GITHUB_ENV
       
+    - name: Create Release
+      id: create_release
+      uses: actions/create-release@v1
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      with:
+        tag_name: $(cat VERSION)
+        release_name: $(cat VERSION)
+        draft: false
+        prerelease: false
+      run: |
+        echo "$(cat VERSION)"
+
     - name: Generate release tag
       id: tag
       if: env.UPLOAD_RELEASE == 'true' && !cancelled()
