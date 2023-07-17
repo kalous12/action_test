@@ -35,8 +35,19 @@ jobs:
 
     - name: Clone Source Code
       run: |
+        echo "---------------"
+        pwd
+        echo "---------------"
         df -hT $PWD
+        echo "---------------"
         git clone $REPO_URL
+        echo "---------------"
+        pwd
+        echo "---------------"
+
+    - name: dependecy
+      run: |
+      apt install tree
 
     - name: complie
       run: |
