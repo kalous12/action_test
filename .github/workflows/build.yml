@@ -47,7 +47,7 @@ jobs:
 
     - name: dependecy
       run: |
-      apt install tree
+        apt install tree
 
     - name: complie
       run: |
