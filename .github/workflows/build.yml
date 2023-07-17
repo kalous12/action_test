@@ -37,39 +37,15 @@ jobs:
       run: |
         sudo apt install tree
 
-    - name: Clone Source Code
-      run: |
-        echo "---------------"
-        pwd
-        echo "---------------"
-        tree
-        echo "---------------"
-        df -hT $PWD
-        echo "---------------"
-        git clone $REPO_URL
-        echo "---------------"
-        pwd
-        echo "---------------"
-        tree
-
     - name: complie
       run: |
-        pwd
         echo "---------------"
+        pwd
         tree
         cd src
-        echo "---------------"
-        tree
-        ls -l
         ./build.sh
-        ls -l
-        mkdir ~/touch
-        mv * ~/touch
-        cd ~
-        echo "---------------"
-        tree
-        ls -l
-        echo "FIRMWARE=~/touch" >> $GITHUB_ENV
+        echo "FIRMWARE=${PWD}" >> $GITHUB_ENV
+        ls -l "${PWD}"
       
     - name: Generate release
       id: tag
