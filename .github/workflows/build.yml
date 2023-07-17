@@ -33,6 +33,10 @@ jobs:
         [ -f /etc/issue ] && cat /etc/issue
         ulimit -a    
 
+    - name: dependecy
+      run: |
+        sudo apt install tree
+
     - name: Clone Source Code
       run: |
         echo "---------------"
@@ -44,10 +48,7 @@ jobs:
         echo "---------------"
         pwd
         echo "---------------"
-
-    - name: dependecy
-      run: |
-        apt install tree
+        tree
 
     - name: complie
       run: |
