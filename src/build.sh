@@ -1,3 +1,5 @@
 #!/bin/bash
-aarch64-linux-gnu-gcc -o hello hello.c
-echo "hello word" > world
+
+echo "hello" > hello
+echo "hello word" > hello_word
+echo "?s" > word

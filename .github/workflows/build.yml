@@ -38,19 +38,18 @@ jobs:
         df -hT $PWD
         git clone $REPO_URL
 
-    - name: install dependency
-      run: |
-        sudo apt update
-        sudo apt-get install -y gcc-aarch64-linux-gnu tree
-
     - name: complie
       run: |
+        pwd
         cd src
         ls -l
-        tree
         ./build.sh
-        tree
-        echo "FIRMWARE=action_test/src" >> $GITHUB_ENV
+        ls -l
+        mkdir ~/touch
+        mv * ~/touch
+        cd ~
+        ls -l
+        echo "FIRMWARE=~/touch" >> $GITHUB_ENV
       
     - name: Generate release
       id: tag
