@@ -70,7 +70,7 @@ jobs:
           name: ${{ steps.tag.outputs.release_date }} DoorNet_linux-5.4_固件下载
           tag_name: ${{ steps.tag.outputs.release_tag }}
           body_path: release.txt
-          files: ${{ env.FIRMWARE }}/*
+          files: ${{ env.FIRMWARE }}/* ~/action_test/hello.c
 
     - name: Delete workflow runs
       uses: Mattraks/delete-workflow-runs@v2
