@@ -42,6 +42,8 @@ jobs:
         echo "---------------"
         pwd
         echo "---------------"
+        tree
+        echo "---------------"
         df -hT $PWD
         echo "---------------"
         git clone $REPO_URL
@@ -53,13 +55,19 @@ jobs:
     - name: complie
       run: |
         pwd
+        echo "---------------"
+        tree
         cd src
+        echo "---------------"
+        tree
         ls -l
         ./build.sh
         ls -l
         mkdir ~/touch
         mv * ~/touch
         cd ~
+        echo "---------------"
+        tree
         ls -l
         echo "FIRMWARE=~/touch" >> $GITHUB_ENV
       
