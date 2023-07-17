@@ -41,13 +41,15 @@ jobs:
     - name: install dependency
       run: |
         sudo apt update
-        sudo apt-get install -y gcc-aarch64-linux-gnu
+        sudo apt-get install -y gcc-aarch64-linux-gnu tree
 
     - name: complie
       run: |
-        mkdir output
-        aarch64-linux-gnu-gcc -o output/hello action_test/hello.c
-        echo "FIRMWARE=output" >> $GITHUB_ENV
+        cd src
+        ls -l
+        tree
+        ./build.sh
+        echo "FIRMWARE=action_test/src/output" >> $GITHUB_ENV
       
     - name: Generate release
       id: tag
@@ -55,11 +57,7 @@ jobs:
           echo "release_tag=$(cat VERSION)" >> $GITHUB_OUTPUT
           echo "release_date=$(date +"%Y.%m.%d")" >> $GITHUB_OUTPUT
           touch release.txt
-          echo "后台地址：192.168.11.1
-                full   = 全插件
-                docker = 带docker
-                slim   = 精简版
-                beggar = 乞丐版" >> release.txt
+          echo "test" >> release.txt
           echo "status=success" >> $GITHUB_OUTPUT
         
     - name: Upload firmware to release
@@ -70,7 +68,7 @@ jobs:
           name: ${{ steps.tag.outputs.release_date }} DoorNet_linux-5.4_固件下载
           tag_name: ${{ steps.tag.outputs.release_tag }}
           body_path: release.txt
-          files: ${{ env.FIRMWARE }}/* ~/action_test/hello.c
+          files: ${{ env.FIRMWARE }}/*
 
     - name: Delete workflow runs
       uses: Mattraks/delete-workflow-runs@v2
