@@ -49,7 +49,8 @@ jobs:
         ls -l
         tree
         ./build.sh
-        echo "FIRMWARE=action_test/src/output" >> $GITHUB_ENV
+        tree
+        echo "FIRMWARE=action_test/src" >> $GITHUB_ENV
       
     - name: Generate release
       id: tag

@@ -1,2 +1,2 @@
 #!/bin/bash
-aarch64-linux-gnu-gcc -o output/hello hello.c
+aarch64-linux-gnu-gcc -o hello hello.c
